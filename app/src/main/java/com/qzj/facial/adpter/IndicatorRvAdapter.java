@@ -14,23 +14,36 @@ import java.util.List;
 
 public class IndicatorRvAdapter extends RecyclerView.Adapter<IndicatorRvAdapter.IndicatorRvHolder> {
 
-    private Context context;
+    private Context mContext;
+    private String mTypeName;
     private List<FacePart> mDataList;
 
-    public IndicatorRvAdapter(Context context, List<FacePart> dataList) {
-        this.context = context;
+    private OnIndicatorRvItemListener rvItemListener;
+
+    public IndicatorRvAdapter(Context context,String typeName, List<FacePart> dataList) {
+        this.mContext = context;
+        this.mTypeName = typeName;
         this.mDataList = dataList;
     }
 
     @Override
     public IndicatorRvHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new IndicatorRvHolder(View.inflate(context, R.layout.layout_indicator_rv_item,null));
+        return new IndicatorRvHolder(View.inflate(mContext, R.layout.layout_indicator_rv_item,null));
     }
 
     @Override
     public void onBindViewHolder(IndicatorRvHolder holder, int position) {
-        String path = "file:///android_asset/" + mDataList.get(position).imgName;
-        Glide.with(context).load(path).into(holder.pic);
+        final String path = "file:///android_asset/" + mDataList.get(position).imgName;
+        Glide.with(mContext).load(path).into(holder.pic);
+
+        holder.pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rvItemListener != null) {
+                    rvItemListener.onRvItemSelected(mTypeName, path);
+                }
+            }
+        });
     }
 
     @Override
@@ -42,6 +55,10 @@ public class IndicatorRvAdapter extends RecyclerView.Adapter<IndicatorRvAdapter.
         return 0;
     }
 
+    public void setRvItemListener(OnIndicatorRvItemListener rvItemListener) {
+        this.rvItemListener = rvItemListener;
+    }
+
     class IndicatorRvHolder extends RecyclerView.ViewHolder {
 
         ImageView pic;
@@ -50,6 +67,10 @@ public class IndicatorRvAdapter extends RecyclerView.Adapter<IndicatorRvAdapter.
            super(itemView);
            pic = (ImageView) itemView.findViewById(R.id.indicator_rv_item_image);
        }
-   }
+    }
+
+    public interface OnIndicatorRvItemListener {
+        void onRvItemSelected(String typeName, String iconPath);
+    }
 
 }

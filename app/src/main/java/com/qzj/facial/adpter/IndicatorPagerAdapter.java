@@ -12,12 +12,13 @@ import com.qzj.facial.bean.FacePart;
 import com.qzj.facial.common.data.FacePartUtils;
 import com.qzj.facial.widget.DividerGridItemDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class IndicatorPagerAdapter extends PagerAdapter {
+public class IndicatorPagerAdapter extends PagerAdapter implements IndicatorRvAdapter.OnIndicatorRvItemListener {
     private List<String> mDataList;
     private Context mContext;
+
+    private OnIndicatorPagerItemListener mItemListener;
 
     public IndicatorPagerAdapter(Context context, List<String> dataList) {
         this.mContext = context;
@@ -42,7 +43,8 @@ public class IndicatorPagerAdapter extends PagerAdapter {
 
         List<FacePart> list = FacePartUtils.getPicFacePartList(mDataList.get(position));
 
-        IndicatorRvAdapter rvAdapter = new IndicatorRvAdapter(mContext, list);
+        IndicatorRvAdapter rvAdapter = new IndicatorRvAdapter(mContext, mDataList.get(position), list);
+        rvAdapter.setRvItemListener(this);
         recyclerView.setAdapter(rvAdapter);
 
         container.addView(recyclerView);
@@ -68,5 +70,20 @@ public class IndicatorPagerAdapter extends PagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return mDataList.get(position);
+    }
+
+    public void setmItemListener(OnIndicatorPagerItemListener mItemListener) {
+        this.mItemListener = mItemListener;
+    }
+
+    @Override
+    public void onRvItemSelected(String typeName, String iconPath) {
+        if (mItemListener != null) {
+            mItemListener.onItemSelected(typeName, iconPath);
+        }
+    }
+
+    public interface OnIndicatorPagerItemListener {
+        void onItemSelected(String typeName, String path);
     }
 }

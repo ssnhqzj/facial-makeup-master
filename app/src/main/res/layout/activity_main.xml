@@ -8,29 +8,45 @@
     android:orientation="vertical"
     tools:context="com.qzj.facial.activity.MainActivity">
 
-    <RelativeLayout
+    <include layout="@layout/toolbar"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <net.lucode.hackware.magicindicator.MagicIndicator
-            android:id="@+id/face_magic_indicator"
+        <RelativeLayout
+            android:id="@+id/face_compound_root"
             android:layout_width="match_parent"
-            android:layout_height="45dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/face_view_pager"
+            <ImageView
+                android:id="@+id/face_compound_face"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/pic_face_2"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/face_magic_indicator"/>
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    </RelativeLayout>
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/face_magic_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/face_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/face_magic_indicator"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
