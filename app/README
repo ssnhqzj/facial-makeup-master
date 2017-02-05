@@ -1,0 +1,46 @@
+
+脸谱
+
+开发模式：MVP
+
+相关框架：
+  http请求：retrofit，okhttp
+  响应式：rxjava，rxandroid
+  数据库：ormlite
+  JSON解析：fastjson
+  地图：百度map
+
+
+项目结构：
+  项目结构主要按模块划分，基本机构如下：
+
+com.chinamobile.streetlight
+|--base [基础类包]
+||----------BaseActivity
+||----------....
+
+|--common [公共包]
+||----------db [数据库]
+||----------http.retrofit [http请求，使用Retrofit]
+||----------map [百度地图工具类]
+||----------utils [常用工具类]
+||----------AppManager [Activity管理类]
+||----------CMApplication [Application]
+||----------....
+
+|--layout.user [用户模块]
+||----------activity
+||----------api [网络接口]
+||----------bean [实体]
+||----------common [公共]
+||----------contract [view和presenter接口]
+||----------presenter [presenter实现]
+||----------....
+
+|--widget [自定义控件]
+||----------....
+
+|--boot [启动页]
+||----------....
+
+|-- ....

@@ -1,0 +1,129 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'findbugs'
+apply plugin: 'bugly'
+
+bugly {
+    appId = bugly_appId
+    appKey = bugly_appKey
+}
+
+android {
+    signingConfigs {
+        config20151203 {
+            keyAlias signing_keyAlias
+            keyPassword signing_keyPassword
+            storeFile file(signing_storeFile)
+            storePassword signing_storePassword
+        }
+    }
+
+    compileSdkVersion Integer.parseInt(compileSdk)
+    buildToolsVersion buildTools
+
+    defaultConfig {
+        applicationId "com.qzj.facial"
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionName "SV2.4.006.1"
+        versionCode 8
+        buildConfigField("String","HOST",street_api_host)
+        manifestPlaceholders = [app_label:"@string/app_name", app_icon:"@mipmap/ico_launcher", baiduMapKey:street_baiduMapKey]
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.config20151203
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config20151203
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // applicationIdSuffix ".debug"
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/com.alibaba/fastjson/pom.properties'
+        exclude 'META-INF/maven/com.alibaba/fastjson/pom.xml'
+    }
+
+    lintOptions {//进行lint检查
+        abortOnError false //避免lint出错中止
+        disable 'InvalidPackage'
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    // 修改生成的apk名字
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+//            variant.productFlavors.each { flavor ->
+                def oldFile = output.outputFile
+                if (variant.buildType.name.equals('release')) {
+                    def releaseApkName = "脸谱${variant.versionName}-${getDate()}-release.apk"
+                    System.out.println(releaseApkName)
+                    output.outputFile = new File("${oldFile.parent}/apk/", releaseApkName)
+                }
+//            }
+        }
+    }
+
+}
+
+// 获取时间戳
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('MMddHHmm')
+    return formattedDate
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:cardview-v7:24.2.0'
+    // eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    // retrofit、okhttp
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.0.2'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    // rxjava
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.3'
+    // ormlite数据库
+    compile files('libs/ormlite-android-4.48.jar')
+    compile files('libs/ormlite-core-4.48.jar')
+    // 下拉刷新
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    // 6.0权限处理
+    apt 'com.zhy:mpermission-compiler:1.0.0'
+    compile 'com.zhy:mpermission-api:1.0.0'
+    // bugly
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    // 下拉刷新
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    // LeakCanary
+    // debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    // releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    // testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    // BlockCanary
+    // compile 'com.github.moduth:blockcanary-ui:1.2.0'
+    //compile project(':AnyVersion')
+    compile 'cn.dreamtobe.threaddebugger:threadpool:1.3.3'
+    compile 'com.orhanobut:hawk:2.0.1'
+    compile project(':magicindicator')
+    compile files('libs/glide-3.7.0.jar')
+}

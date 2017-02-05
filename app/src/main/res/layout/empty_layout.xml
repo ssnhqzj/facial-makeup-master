@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 正在加载 -->
+    <LinearLayout
+        android:id="@id/empty_loading"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:padding="5dp"
+        android:gravity="center"
+        android:background="@drawable/empty_loading_bg"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@id/empty_loading_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Loading_ProgressBar"/>
+
+        <TextView
+            android:id="@id/empty_loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/white"
+            tools:text="正在加载..."/>
+
+    </LinearLayout>
+
+    <!-- 其他,网络异常、无数据等 -->
+    <LinearLayout
+        android:id="@id/empty_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/empty_loading"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@id/empty_other_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@mipmap/empty_error"/>
+
+        <TextView
+            android:id="@id/empty_other_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_normal"
+            tools:text="出错了" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@id/empty_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/empty_other"
+        android:layout_marginTop="10dp"
+        android:textColor="#BABABA"
+        android:textSize="@dimen/textsize_mini_plus"
+        tools:text="触摸屏幕重试"/>
+
+</RelativeLayout>

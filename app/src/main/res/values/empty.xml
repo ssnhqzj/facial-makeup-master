@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="empty_layout" type="id" />
+
+    <item name="empty_loading" type="id" />
+    <item name="empty_loading_progress" type="id" />
+    <item name="empty_loading_text" type="id" />
+
+    <item name="empty_other" type="id" />
+    <item name="empty_other_image" type="id" />
+    <item name="empty_other_text" type="id" />
+    <item name="empty_hint_text" type="id" />
+</resources>

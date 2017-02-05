@@ -1,0 +1,39 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="horizontal_margin_5">5dp</dimen>
+    <dimen name="vertical_margin_5">5dp</dimen>
+    <dimen name="horizontal_margin">10dp</dimen>
+    <dimen name="vertical_margin">10dp</dimen>
+    <dimen name="horizontal_margin_15dp">15dp</dimen>
+    <dimen name="vertical_margin_15dp">15dp</dimen>
+    <dimen name="horizontal_margin_20dp">20dp</dimen>
+    <dimen name="vertical_margin_20dp">20dp</dimen>
+    <dimen name="horizontal_margin_25dp">25dp</dimen>
+    <dimen name="vertical_margin_25dp">25dp</dimen>
+    <dimen name="horizontal_margin_30dp">30dp</dimen>
+    <dimen name="vertical_margin_30dp">30dp</dimen>
+    <dimen name="horizontal_margin_40dp">40dp</dimen>
+    <dimen name="vertical_margin_40dp">40dp</dimen>
+    <dimen name="horizontal_margin_50dp">50dp</dimen>
+    <dimen name="vertical_margin_50dp">50dp</dimen>
+
+    <!--common-->
+    <dimen name="comm_view_height_small">32dp</dimen>
+    <dimen name="comm_view_height">48dp</dimen>
+    <dimen name="comm_view_min_width">150dp</dimen>
+
+    <!-- common font size -->
+    <dimen name="textsize_mini">10sp</dimen>
+    <dimen name="textsize_mini_plus">12sp</dimen>
+    <dimen name="textsize_small">14sp</dimen>
+    <dimen name="textsize_small_plus">15sp</dimen>
+    <dimen name="textsize_normal">16sp</dimen>
+    <dimen name="textsize_normal_plus">18sp</dimen>
+    <dimen name="textsize_big">20sp</dimen>
+    <dimen name="textsize_big_plus">25sp</dimen>
+    <dimen name="textsize_super_big">30sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>

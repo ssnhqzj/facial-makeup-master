@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <com.chinamobile.streetlight.widget.DrawableCenterTextView
+        android:id="@+id/toolbar_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:drawablePadding="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <com.chinamobile.streetlight.widget.DrawableCenterTextView
+        android:id="@+id/toolbar_center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
+
+    <com.chinamobile.streetlight.widget.DrawableCenterTextView
+        android:id="@+id/toolbar_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minWidth="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="14sp"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
+
+</RelativeLayout>
