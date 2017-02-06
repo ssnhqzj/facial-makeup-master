@@ -39,3 +39,4 @@ gradle
 # Keystore files
 *.jks
 
+/magicindicator/magicindicator.iml
